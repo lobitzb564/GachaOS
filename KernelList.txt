@@ -1,0 +1,6 @@
+https://www.youtube.com/watch?v=VVunP3yDgm4 
+Download developement tools
+go to kernel.org and download source code for kernel closest to arch version - copy "tarball" url
+Make a temporary directory to build kernel in
+download file in directory and extract, then go to new directory
+Use "make mrproper" to clean up source tree
