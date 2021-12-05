@@ -1,6 +1,28 @@
+He's doing in virtual machine, we can all just ssh onto the computer
 https://www.youtube.com/watch?v=VVunP3yDgm4 
+If we make our own kernel, we can make it take up less space
 Download developement tools
 go to kernel.org and download source code for kernel closest to arch version - copy "tarball" url
 Make a temporary directory to build kernel in
 download file in directory and extract, then go to new directory
 Use "make mrproper" to clean up source tree
+Next, have to configure the kernel and tell it what to build
+get configuration from original running in proc, find config.gz
+extract from zcat and redirect to .config
+-y feature compiled
+-n feature excluded
+-m feature loadable
+Comment out Config-deubg ones
+Check config file for everything with "make olddefconfig", will ask if missing
+Use "make localmodconfig" to not change actual config on computer
+use "make menuconfig" to customizing kernel
+Can cut out useless stuff by space bar
+Build Kernel:
+"make -j" (Flag tells it to use multiple cores)
+Takes a long time
+switch to root user
+build modules by using "make modules install"
+copy kernel to root partition
+generate init ram fs file with mkinitcpio -k (insert version) : 20:42
+Copy System.map into /booy
+Do a bunch of stuff with some files, not really imporatnt at this point, then reboot to test
