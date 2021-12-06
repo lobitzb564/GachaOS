@@ -1,3 +1,5 @@
+Luca install these: xmlto, kmod, inetutils, bc, lebelf
+
 He's doing in virtual machine, we can all just ssh onto the computer
 https://www.youtube.com/watch?v=VVunP3yDgm4 
 If we make our own kernel, we can make it take up less space
