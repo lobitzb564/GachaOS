@@ -1,4 +1,4 @@
-Luca install these: xmlto, kmod, inetutils, bc, lebelf
+Luca install these: xmlto, kmod, inetutils, bc, libelf
 
 He's doing in virtual machine, we can all just ssh onto the computer
 https://www.youtube.com/watch?v=VVunP3yDgm4 
