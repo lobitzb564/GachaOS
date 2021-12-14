@@ -1,5 +1,7 @@
 Luca install these: xmlto, kmod, inetutils, bc, libelf
 
+Arch linux VB install: https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/
+
 He's doing in virtual machine, we can all just ssh onto the computer
 https://www.youtube.com/watch?v=VVunP3yDgm4 
 If we make our own kernel, we can make it take up less space
@@ -28,3 +30,5 @@ copy kernel to root partition
 generate init ram fs file with mkinitcpio -k (insert version) : 20:42
 Copy System.map into /booy
 Do a bunch of stuff with some files, not really imporatnt at this point, then reboot to test
+
+
