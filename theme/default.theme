@@ -1,0 +1,66 @@
+ThemeAuthor="Gacha"
+ThemeDescription="Default theme for GachaOS"
+
+Look="pixmap"
+
+# Border
+BorderSizeX=3
+BorderSizeY=3
+DlgBorderSizeX=1
+DlgBorderSizeY=1
+CornerSizeX=12
+CornerSizeY=12
+ColorNormalBorder="rgb:99/E7/FF"
+ColorActiveBorder="rgb:99/E7/FF"
+
+# Scroll Bar
+ColorScrollBar="rgb:E0/E0/E0"
+ColorScrollBarSlider="rgb:B0/B0/B0"
+ColorScrollBarButtonArrow="rgb:B0/B0/B0"
+
+# Quick Switch
+ColorQuickSwitch="rgb:99/E7/FF"
+ColorQuickSwitchText="rgb:00/00/00"
+ColorQuickSwitchActive="rgb:B8/EE/FF"
+
+# Title Bar
+TitleButtonsLeft="s"
+TitleButtonsRight="xmih"
+TitleButtonsSupported="sxmih"
+ColorActiveTitleBar="rgb:91/E5/FF"
+ColorActiveTitleBar="rgb:91/E5/FF"
+ColorNormalTitleBarText="rgb:00/00/00"
+ColorNormalTitleBarText="rgb:00/00/00"
+
+# Button
+ColorToolButton="rgb:91/E5/FF"
+ColorNormalButton="rgb:91/E5/FF"
+ColorNormalButtonText="rgb:00/00/00"
+
+# Workspace
+ColorNormalWorkspaceButton="rgb:91/E5/FF"
+ColorActiveWorkspaceButton="rgb:255/255/255"
+ColorNormalWorkspaceButtonText="rgb:00/00/00"
+ColorActiveWorkspaceButtonText="rgb:00/00/00"
+
+# Menu
+ColorNormalMenu="rgb:91/E5/FF"
+ColorActiveMenuItem="rgb:255/255/255"
+ColorNormalMenuItemText="rgb:00/00/00"
+ColorActiveMenuItemText="rgb:00/00/00"
+ColorDisabledMenuItemText="rgb:80/80/80"
+
+# List Box
+ColorListBox="rgb:B0/B0/B0"
+ColorListBoxText="rgb:00/00/00"
+ColorListBoxSelection="rgb:E0/E0/E0"
+ColorListBoxSelectionText="rgb:00/00/00"
+
+# Dialog
+ColorDialog="rgb:E0/E0/E0"
+ColorLabel="rgb:E0/E0/E0"
+ColorLabelText="rgb:00/00/00"
+
+# Tool Tips
+ColorToolTip="rgb:E0/E0/E0"
+ColorToolTipText="rgb:00/00/00"  
