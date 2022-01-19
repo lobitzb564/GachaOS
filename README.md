@@ -5,3 +5,7 @@ Arch Linux version: 2021.12.01
 
 Vote to depose luca
 
+Sign Here:
+Rishith Anand
+Dev Amlani
+
