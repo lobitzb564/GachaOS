@@ -8,4 +8,4 @@ Vote to depose luca
 Sign Here:
 Rishith Anand
 Dev Amlani
-
+karthik taranath
