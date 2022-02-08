@@ -1,4 +1,33 @@
 /*THIS IS THE STYLESHEET.COM*/
-examplePanelText {
-    color: red;
+.examplePanelText {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 140px;
+    font-weight: normal;
+    background-color:dimgrey;
+    border-color:#d3d3d3;
+    border-width: 2px;
+}
+
+.examplePanelText:hover {
+    color:lightgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 140px;
+    font-weight: bold;
+    background-color:rgb(71, 71, 71);
+    border-color:lightgray;
+    border-width: 1px;
+
+}
+
+.examplePanelText:focus {
+    color:darkgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 140px;
+    background-color:rgb(71, 71, 71);
+    border-color:bisque;
+    border-width: 2px;
 }
