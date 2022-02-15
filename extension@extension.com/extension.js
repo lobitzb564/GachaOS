@@ -19,12 +19,17 @@ var Tab = GObject.registerClass({
             label: this.app.get_name(),
             reactive: true
         });
-        //this.set_child(this.app.get_icon());
+        this.set_child(new St.Icon({gicon: this.app.get_icon()}));
         this.connect("clicked", this.onclick.bind(this));
         this.connect('destroy', this.onDestroy.bind(this));
     }
     onclick(clicked_button) {
-        this.app.get_windows()[0].activate(1000000);
+        let btnlist = this.app.get_windows();
+        if (btnlist.length <= 1){btnlist[0].make_above();
+        } else {
+            let pop = new Popup(btnlist, this.get_x());
+
+        }
     }
 
     onDestroy() {
@@ -37,11 +42,62 @@ var Tab = GObject.registerClass({
 }
 );
 
+var Popup = GObject.registerClass({
+    GtypeName: "Popup",
+}, class Popup extends St.Widget {
+    _init(btnlist, xpos) {
+        this.btnlist = btnlist;
+        super._init({
+            style_class: 'bg-popup',
+            reactive: true,
+            can_focus: true,
+            layout_manager: new Clutter.BinLayout(),
+            track_hover: true,
+            height: ((btnlist.length*30)),
+            width: 190,
+        });
+        Main.layoutManager.addChrome(this, {
+            affectsInputRegion: true,
+            affectsStruts: false,
+            trackFullscreen: true,
+        });
+        let bx =new St.BoxLayout({vertical: true});
+        this.add_actor(bx);
+        this.set_position(xpos, Main.layoutManager.primaryMonitor.height-HEIGHT-this.height);
+        for (let i = 0; i < btnlist.length; i++) {
+            let p = new Popupwin(btnlist[i], this);
+            p.set_track_hover(true);
+            bx.insert_child_at_index(p, 0);
+        }
+        //this.connect("clicked", this.onclick.bind(this));
+    }
+  }
+);
+
+var Popupwin = GObject.registerClass({
+    GtypeName: "Popupwin",
+}, class Popupwin extends St.Button {
+    _init(win, parent) {
+        this.win = win;
+        this.parent = parent;
+        super._init({
+            style_class: "epopupwin",
+            reactive: true,
+            label: win.get_title(),
+        });
+        
+        this.connect("clicked", this.onclick.bind(this));
+    }
+    onclick(clicked_button) {
+        this.win.make_above();
+        Main.layoutManager.removeChrome(this.parent);
+    }
+}
+);
 
 function init() {
     
     let monitor = Main.layoutManager.primaryMonitor;
-    tablist = [];
     layout = new Clutter.BoxLayout({homogeneous: true});
     container = new St.Widget({
         style_class: "bg-color",

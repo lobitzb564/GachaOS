@@ -28,3 +28,25 @@
 .bg-color {
     background-color: #444;
 }
+.bg-popup {
+    background-color: #446;
+
+}
+
+.epopupwin {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    height: 30px;
+    font-weight: normal;
+    background-color:rgb(71, 71, 71);
+}
+
+.epopupwin:hover {
+    border-color:#d3d3d3;
+    border-width: 1px;
+    color:lightgrey;
+    font-weight: bold;
+    background-color:dimgrey;
+}
