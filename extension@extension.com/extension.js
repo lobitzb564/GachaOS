@@ -1,65 +1,53 @@
-const {St, Clutter, GLib, GObject} = imports.gi;
+/*THIS IS THE JAVASCRIPT.COM*/
+const {St, Clutter, GLib, GObject, Shell} = imports.gi;
 const Main = imports.ui.main;
-const fs = require(fs);
 const Mainloop = imports.mainloop;
 
 const HEIGHT = 50;
-let panelButton, panelButtonText, testButton, timeout;
+let panelButton, panelButtonText, testButton;
 let lastwm;
-let container, box, layout;
+let appSystem, appStateChangedid;
+let container, box, layout, cntnr;
 
 var Tab = GObject.registerClass({
     GtypeName: "Tab",
 }, class Tab extends St.Button {
-    constructor() {
-        this.open = false;
-    }
-    _init() {
+    _init(app) {
+        this.app = app;
         super._init({
             style_class: 'examplePanelText',
+            label: this.app.get_name(),
             reactive: true
         });
+        //this.set_child(this.app.get_icon());
         this.connect("clicked", this.onclick.bind(this));
+        this.connect('destroy', this.onDestroy.bind(this));
     }
     onclick(clicked_button) {
-        let [ok, out, err, exit] = GLib.spawn_command_line_sync(`wmctrl -a ${this.get_label()}`);
+        this.app.get_windows()[0].activate(1000000);
+    }
+
+    onDestroy() {
+        cntnr.remove_child(this);
+    }
+
+    getapp() {
+        return this.app;
     }
 }
 );
 
 
-function checkButton() {
-    var [ok, out, err, exit] = GLib.spawn_command_line_sync('wmctrl -l');
-    
-    if (lastwm != out.toString()) {
-    var arr = out.toString().split('\n');
-    arr.pop();
-    box.remove_all_children();
-
-    for (let y = 0; y < arr.length; y++) {
-        let btn = new Tab()
-        btn.set_label(arr[y].substring(20));
-        btn.set_track_hover(true);
-        box.insert_child_at_index(btn, y);
-    }
-
-   
-
-    lastwm = out.toString();
-}
-return true;
-}
-
-
 function init() {
+    
     let monitor = Main.layoutManager.primaryMonitor;
-
+    tablist = [];
     layout = new Clutter.BoxLayout({homogeneous: true});
     container = new St.Widget({
         style_class: "bg-color",
         reactive: true,
         can_focus: true,
-        layout_manager: layout,
+        layout_manager: new Clutter.BinLayout(),
         track_hover: true,
         height: HEIGHT,
         width: monitor.width,
@@ -68,8 +56,19 @@ function init() {
         x_expand: true,
         y_expand: true,
     });
+    cntnr = new St.Widget({
+        style_class: "bg-color",
+        reactive: true,
+        layout_manager: layout,
+        x_align: Clutter.ActorAlign.START,
+        x_expand: true,
+        y_expand: true,
+    });
+    
     container.add_actor(box);
-
+    box.add_child(cntnr);
+    appSystem = Shell.AppSystem.get_default();
+    appStateChangedid = appSystem.connect("app-state-changed", onChange.bind(cntnr));
     container.set_position(0, monitor.height - HEIGHT);
 
     container.connect("enter-event", () => {
@@ -91,12 +90,23 @@ function enable() {
         affectsStruts: true,
         trackFullscreen: true,
     });
-    timeout = Mainloop.timeout_add_seconds(0.25, checkButton);
 }
 
 function disable() {
-    box.remove_all_children();
+    cntnr.remove_all_children();
     Main.layoutManager.removeChrome(container);
-    lastwm = "\n";
-    Mainloop.source_remove(timeout);
+}
+
+function onChange(appSys, app) {
+    if (app.state === Shell.AppState.RUNNING) {
+        let btn = new Tab(app);
+        btn.set_track_hover(true);
+        cntnr.insert_child_at_index(btn, 0);
+    } else if (app.state === Shell.AppState.STOPPED) {
+        let children = cntnr.get_children();
+        let child = children.find(c => c.getapp() === app);
+        if (child) {
+            child.destroy();
+        }
+    }
 }
