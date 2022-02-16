@@ -17,11 +17,15 @@ var Tab = GObject.registerClass({
         super._init({
             style_class: 'examplePanelText',
             label: this.app.get_name(),
-            reactive: true
+            reactive: true,
+            track_hover: true
         });
-        this.set_child(new St.Icon({gicon: this.app.get_icon()}));
+        this.icon = new St.Icon({gicon: this.app.get_icon()});
+        this.label = new St.Label({style_class: "examplePanelText", text: this.app.get_name()});
+        this.set_child(this.icon);
         this.connect("clicked", this.onclick.bind(this));
         this.connect('destroy', this.onDestroy.bind(this));
+        this.connect('style-changed', this.mouseov.bind(this));
     }
     onclick(clicked_button) {
         let btnlist = this.app.get_windows();
@@ -30,6 +34,15 @@ var Tab = GObject.registerClass({
             let pop = new Popup(btnlist, this.get_x());
 
         }
+    }
+
+    mouseov() {
+    if (this.hover) {
+        this.remove_all_children();
+        this.set_label(this.app.get_name());
+    } else {
+    this.set_child(this.icon);
+    }
     }
 
     onDestroy() {
