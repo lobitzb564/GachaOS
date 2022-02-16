@@ -21,7 +21,6 @@ var Tab = GObject.registerClass({
             track_hover: true
         });
         this.icon = new St.Icon({gicon: this.app.get_icon()});
-        this.label = new St.Label({style_class: "examplePanelText", text: this.app.get_name()});
         this.set_child(this.icon);
         this.connect("clicked", this.onclick.bind(this));
         this.connect('destroy', this.onDestroy.bind(this));
