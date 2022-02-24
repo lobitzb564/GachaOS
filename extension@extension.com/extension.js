@@ -32,9 +32,6 @@ async function pinthis() {
         );
     });
     let tabs = contents.toString().split('\n');
-    for (let i = 0; i < tabs.length; i++) {
-        Main.panel._leftBox.insert_child_at_index(new St.Button({label: tabs[i]}), i);
-    }
     return contents;
 }
 
