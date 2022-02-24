@@ -1,6 +1,63 @@
+/*THIS IS THE STYLESHEET.COM*/
+.examplePanelText {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    height: 50px;
+    font-weight: normal;
+    background-color:rgb(71, 71, 71);
+    border-color:#d3d3d3;
+    border-width: 2px;
+}
+
+.examplePanelText:hover {
+    color:lightgrey;
+    font-weight: bold;
+    background-color:dimgrey;
+    border-color:lightgray;
+    border-width: 1px;
+}
+
 #panel.bottom-panel {
     border-top-width: 1px;
     border-bottom-width: 0px;
     height: 2.25em ;
     padding: 2px;
-  }
+}
+
+.bg-color {
+    background-color: #444;
+}
+.bg-popup {
+    background-color: #446;
+
+}
+
+.tabtxt {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    height: 50px;
+    font-weight: normal;
+}
+
+.epopupwin {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    height: 30px;
+    font-weight: normal;
+    border-radius: 5px;
+    background-color:rgb(71, 71, 71);
+}
+
+.epopupwin:hover {
+    border-color:#d3d3d3;
+    border-width: 1px;
+    color:lightgrey;
+    font-weight: bold;
+    background-color:dimgrey;
+}
