@@ -1,0 +1,8 @@
+{
+"uuid": "spinning@wheel.com",
+    "name": "Spinning wheel",
+    "description": "This wheel spins",
+    "shell-version": [  "41.2" ],
+    "url": "",
+    "version": 1
+}
