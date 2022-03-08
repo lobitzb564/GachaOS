@@ -9,6 +9,29 @@
     background-color:rgb(71, 71, 71);
     border-color:#d3d3d3;
     border-width: 2px;
+    border-top-width: 4px;
+}
+
+.examplePanel {
+    color:beige;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    height: 50px;
+    font-weight: normal;
+    background-color:rgb(32, 32, 32);
+    border-color:#d3d3d3;
+    border-width: 2px;
+
+}
+
+
+.examplePanel:hover {
+    color:lightgrey;
+    font-weight: bold;
+    background-color:rgb(78, 78, 78);
+    border-color:lightgray;
+    border-width: 1px;
 }
 
 .examplePanelText:hover {
@@ -60,8 +83,4 @@
     color:lightgrey;
     font-weight: bold;
     background-color:dimgrey;
-}
-
-.bigblk {
-    background-color: transparent;
 }
