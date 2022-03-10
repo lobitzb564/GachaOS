@@ -1,14 +1,19 @@
 import json
 import re
+import subprocess
+import time
 
 """
 Per Each:
-  GPU%, GPU Time Energy use, Networks
+  GPU%, GPU Time Energy use,
 """
 
+
 if __name__ == "__main__":
-    with open("test.txt") as f:
+    subprocess.call("~/app-dir/task-manager/src/format-data/get_info.sh", shell=True)
+    with open("info.txt") as f:
         file_contents = f.readlines()
+
     final_dict = {}
     #Gets Total Threads, Total Processes, Total CPU percentage, Memory free and memory used
     final_dict["Num_processes"] = int(re.search(r"([0-9]*) total", file_contents[1]).groups()[0])
@@ -28,6 +33,7 @@ if __name__ == "__main__":
         temp_dict["command"] = vals[11]
         temp_dict["time"] = vals[10]
         application_list.append(temp_dict)
+    application_list = application_list[:101]
     final_dict["Individual_application_info"] = application_list
     with open("temperature.txt") as f:
         res = re.search("(\+[0-9\.]*).F  \(crit = \+([0-9\.]*)", f.readlines()[1]).groups()
@@ -38,4 +44,4 @@ if __name__ == "__main__":
         else:
             final_dict["Heat-Alert"] = False
     final_json = json.dumps(final_dict)
-    print(final_json)
+    print(final_json, flush=True)
