@@ -1,0 +1,12 @@
+{
+  "sounds": [
+    {
+      "name": "Avengers",
+      "uri": ".local/share/gnome-shell/extensions/spinwheel@extension.com/sounds/aven.ogg"
+    },
+    {
+      "name": "Home Depot",
+      "uri": ".local/share/gnome-shell/extensions/spinwheel@extension.com/sounds/hd.ogg"
+    }
+  ]
+}
