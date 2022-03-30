@@ -1,0 +1,10 @@
+.Background{
+    background-color: transparent;
+}
+
+.wheel {
+    background-image: url("wheel.png");
+    background-size: 800px;
+    height: 800px;
+    width: 800px;
+}
