@@ -15,7 +15,6 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 
 
-
 async function getpins() {
     let fileexists = Me.dir.get_child("pins.txt").query_exists(null);
     if (!fileexists) {
@@ -149,7 +148,6 @@ var Tab = GObject.registerClass({
 }, class Tab extends St.Button {
     _init(app) {
         this.app = app;
-        this.pinned = true;
         super._init({
             style_class: 'examplePanel',
             label: this.app.get_name(),
@@ -166,6 +164,7 @@ var Tab = GObject.registerClass({
         this.connect('destroy', this.onDestroy.bind(this));
         this.connect('style-changed', this.mouseov.bind(this));
     }
+
     clicked(actor, clicked_button) {
 
         if (clicked_button === 1) {
@@ -294,9 +293,11 @@ var RCPopup = GObject.registerClass({
                 childrn[u].width = (Main.layoutManager.primaryMonitor.width/childrn.length);
             }
         } else {
+            if(childrn[0].width != 190) {
             for (let u = 0; u < childrn.length; u++) {
                 childrn[u].width = 190;
             }
+        }
         }
     }
 }
@@ -435,10 +436,13 @@ function disable() {
 }
 
 async function onChange(appSys, app) {
+
     let plist = await getpins();
     if (app.state === Shell.AppState.RUNNING) {
         if (!plist.includes(app.get_id())) {
-            
+            let children = cntnr.get_children();
+            let child = children.find(c => c.getapp() === app);
+            if (!child) {
             let btn = new Tab(app);
             btn.set_track_hover(true);
             cntnr.insert_child_at_index(btn, 0);
@@ -448,6 +452,7 @@ async function onChange(appSys, app) {
                     children[u].width = (Main.layoutManager.primaryMonitor.width/children.length);
                 }
             }
+        }
         } else {
             let children = cntnr.get_children();
             let child = children.find(c => c.getapp() === app);
@@ -462,14 +467,17 @@ async function onChange(appSys, app) {
         if (child) {
             child.destroy();
         }
+        
         let childrn = cntnr.get_children();
             if (childrn.length * 190 > Main.layoutManager.primaryMonitor.width) {
                 for (let u = 0; u < childrn.length; u++) {
                     childrn[u].width = (Main.layoutManager.primaryMonitor.width/childrn.length);
                 }
             } else {
-                for (let u = 0; u < childrn.length; u++) {
-                    childrn[u].width = 190;
+                if(childrn[0].width != 190) {
+                    for (let u = 0; u < childrn.length; u++) {
+                        childrn[u].width = 190;
+                    }
                 }
             }
     } else {
